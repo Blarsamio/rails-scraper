@@ -1,0 +1,4 @@
+<%= tag.div id: dom_id(result), class: "flex gap-4" do %>
+  <div class="w-32"><%= result.success? ? "Success" : "Fail" %></div>
+  <div class="text-gray-700 tx-sm"><%= time_ago_in_words(result.created_at).titleize %> ago</div>
+<% end %>
