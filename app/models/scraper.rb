@@ -15,4 +15,8 @@ class Scraper
   def present(selector:)
     document.at_css(selector).present?
   end
+
+  def shipping(selector:)
+    document.at_css(selector).present?
+  end
 end

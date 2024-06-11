@@ -1,16 +1,40 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="flex justify-between">
-  <h2 class="text-2xl font-bold"><%= link_to "‹", root_path, class: "p-2 rounded hover:bg-gray-200 text-decoration-none" %><%= @page.name %></h2>
-  <div class="flex gap-1">
-    <%= link_to "Edit", edit_page_path(@page), class: "border border-gray-200 bg-blue-600 text-white rounded px-2 py-2 text-decoration-none hover:bg-blue-400" %>
-    <%= button_to "Run", page_check_path(@page), class: "border border-gray-200 bg-blue-600 text-white rounded px-2 py-2 text-decoration-none hover:bg-blue-400" %>
+  <h2 class="text-2xl font-bold flex gap-2 items-center">
+    <%= link_to "‹", root_path, class: "p-2 rounded hover:bg-gray-200 text-decoration-none" %>
+    <span class="inline-block"><%= @page.name %></span>
+  </h2>
+  <div>
+    <div class="flex gap-1">
+      <%= link_to "Edit", edit_page_path(@page), class: "border border-gray-200 bg-blue-600 text-white rounded px-2 py-2 text-decoration-none hover:bg-blue-400" %>
+      <%= button_to "Run", page_check_path(@page), class: "border border-gray-200 bg-blue-600 text-white rounded px-2 py-2 text-decoration-none hover:bg-blue-400" %>
+    </div>
   </div>
 </div>
 
-<%= link_to @page.url, @page.url, class: "text-gray-700 text-decoration-none mt-4", target: :_blank %>
+<div class="flex flex-col gap-2">
+  <%= link_to @page.url, @page.url, class: "text-gray-700 text-decoration-none mt-4", target: :_blank %>
 
+  <% if  @page.check_type == "text" %>
+    <div class="mt-4">
+      <p class="text-gray-700">Is this item <span class="font-bold"><%= @page.match_text %>?</span></p>
+    </div>
+  <% elsif @page.check_type == "exists" %>
+    <p>
+      <span class="text-gray-700">The page should contain an element with the selector: <span class="font-bold"><%= @page.selector %></span></span>
+    </p>
+  <% elsif @page.check_type == "not_exists" %>
+    <p>
+      <span class="text-gray-700">The page should not contain an element with the selector: <span class="font-bold"><%= @page.selector %></span></span>
+    </p>
+  <% elsif @page.check_type == "shipping_now" %>
+    <p>
+      <span class="text-gray-700">Is this item <span class="font-bold">shipping now?</span></span>
+    </p>
+  <% end %>
+</div>
 <div class="mt-4">
-  <h4 class="font-medium">Results</h4>
+  <h4 class="font-medium text-gray-700">Recent results</h4>
   <%= render @page.results.order(created_at: :desc) %>
 </div>

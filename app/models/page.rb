@@ -17,9 +17,11 @@ class Page < ApplicationRecord
               when "text"
                 scraper.text(selector: selector).downcase == match_text.downcase
               when "exists"
-                scraper.present?
-              when "not_exists"
                 !scraper.present?
+              when "not_exists"
+                scraper.present?
+              when "shipping_now"
+                scraper.present?
               end
     results.create(success: result)
   end

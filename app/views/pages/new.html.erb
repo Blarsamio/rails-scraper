@@ -1,9 +1,7 @@
-<h1>New page</h1>
+<h2 class="text-2xl font-bold flex gap-2 items-center">
+  <%= link_to "‹", root_path, class: "p-2 rounded hover:bg-gray-200 text-decoration-none" %>
+  Monitor a page
+</h2>
+
 
 <%= render "form", page: @page %>
-
-<br>
-
-<div>
-  <%= link_to "Back to pages", pages_path %>
-</div>
