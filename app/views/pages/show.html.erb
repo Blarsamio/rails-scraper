@@ -14,12 +14,10 @@
 </div>
 
 <div class="flex flex-col gap-2">
-  <%= link_to @page.url, @page.url, class: "text-gray-700 text-decoration-none mt-4", target: :_blank %>
+  <%= link_to @page.url, @page.url, class: "text-gray-700 text-decoration-none my-4", target: :_blank %>
 
   <% if  @page.check_type == "text" %>
-    <div class="mt-4">
       <p class="text-gray-700">Is this item <span class="font-bold"><%= @page.match_text %>?</span></p>
-    </div>
   <% elsif @page.check_type == "exists" %>
     <p>
       <span class="text-gray-700">The page should contain an element with the selector: <span class="font-bold"><%= @page.selector %></span></span>

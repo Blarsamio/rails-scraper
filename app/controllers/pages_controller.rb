@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   # GET /pages or /pages.json
   def index
-    @pages = Page.all
+    @pages = Page.includes(:last_result)
   end
 
   # GET /pages/1 or /pages/1.json
@@ -65,6 +65,6 @@ class PagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).permit(:name, :url, :check_type, :selector, :match_text)
+      params.require(:page).permit(:name, :url, :check_type, :selector, :match_text, :last_result )
     end
 end

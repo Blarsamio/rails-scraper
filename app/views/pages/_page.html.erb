@@ -3,6 +3,9 @@
     <div class="col-span-2">
       <h5 class="font-bold text-medium truncate mb-0" ><%= page.name %></h5>
     </div>
-    <%= render page.results.order(created_at: :desc).first, class: "col-span-1" %>
+    <% if !page.results.empty? %>
+      <%= render page.last_result, class: "col-span-1" %>
+    <% else %>
+    <% end %>
   </div>
 <% end %>
